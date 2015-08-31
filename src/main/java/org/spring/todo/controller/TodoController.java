@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 @RequestMapping("/todo")
 public class TodoController {
@@ -25,7 +28,14 @@ public class TodoController {
         String description = webRequest.getParameter("description");
         System.out.println("Got a post request: " + description);
         System.out.println("Awesome data-binding: " + todo.getDescription());
-        modelMap.addAttribute("todo", todo);
+
+        Todo another_todo = new Todo(description = "example item");
+        List<Todo> todo_list = new ArrayList<Todo>();
+        todo_list.add(todo);
+        todo_list.add(another_todo);
+
+        modelMap.addAttribute("todo_list", todo_list);
+
         return "list";
     }
 }

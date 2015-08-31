@@ -9,7 +9,9 @@
 <body>
     <h1>Hello World! ${version}</h1>
     <ul>
-        <li>${todo.description}</li>
+        <c:forEach items="${todo_list}" var="todo">
+            <li>${todo.description}</li>
+        </c:forEach>
     </ul>
     <form method="post" action="/spring-todo/todo">
         <label>
