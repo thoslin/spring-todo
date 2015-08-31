@@ -1,6 +1,10 @@
 package org.spring.todo.model;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
+
 public class Todo {
+    @NotEmpty(message="Description may not be empty")
     private String description;
 
     public Todo() {}
