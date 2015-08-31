@@ -8,6 +8,9 @@
 </head>
 <body>
     <h1>Hello World! ${version}</h1>
+    <ul>
+        <li>${todo.description}</li>
+    </ul>
     <form method="post" action="/spring-todo/todo">
         <label>
             <input type="text" name="description">

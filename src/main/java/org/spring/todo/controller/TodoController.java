@@ -1,10 +1,14 @@
 package org.spring.todo.controller;
 
+import org.spring.todo.model.Todo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.request.WebRequest;
 
 @Controller
 @RequestMapping("/todo")
@@ -17,8 +21,11 @@ public class TodoController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String add() {
-        System.out.println("Got a post request!");
+    public String add(WebRequest webRequest, @ModelAttribute Todo todo, ModelMap modelMap) {
+        String description = webRequest.getParameter("description");
+        System.out.println("Got a post request: " + description);
+        System.out.println("Awesome data-binding: " + todo.getDescription());
+        modelMap.addAttribute("todo", todo);
         return "list";
     }
 }
