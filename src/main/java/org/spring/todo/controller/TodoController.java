@@ -25,7 +25,6 @@ public class TodoController {
     public String index(Todo todo, @RequestParam(value = "version", required = false, defaultValue = "0.1") String version, Model model) {
         //model.addAttribute("version", version);
         model.addAttribute("todo_list", todoDao.getTodoList());
-
         return "list";
     }
 
@@ -36,6 +35,7 @@ public class TodoController {
 //        System.out.println("Awesome data-binding: " + todo.getDescription());
 
         if(result.hasErrors()) {
+            modelMap.addAttribute("todo_list", todoDao.getTodoList());
             return "list";
         }
 
@@ -45,8 +45,6 @@ public class TodoController {
 //        todo_list.add(todo);
 //        todo_list.add(another_todo);
 
-        modelMap.addAttribute("todo_list", todoDao.getTodoList());
-
-        return "list";
+        return "redirect:todo";
     }
 }
