@@ -4,6 +4,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 
 public class Todo {
+    private int id;
     @NotEmpty(message="Description may not be empty")
     private String description;
 
@@ -11,6 +12,14 @@ public class Todo {
 
     public Todo(String description) {
         this.description = description;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getDescription() {
@@ -24,7 +33,8 @@ public class Todo {
     @Override
     public String toString() {
         return "Todo{" +
-                "description='" + description + '\'' +
+                "id=" + id +
+                ", description='" + description + '\'' +
                 '}';
     }
 }
