@@ -12,7 +12,7 @@
     <h1 style="text-align: center; margin-bottom: 90px; margin-top: 90px">Spring.Do</h1>
     <div class="list-group">
         <c:forEach items="${todo_list}" var="todo">
-            <a href="#" class="list-group-item">${todo.description}</a>
+            <a href="javascript:;" class="list-group-item todo-item" data-id="${todo.id}">${todo.description}</a>
         </c:forEach>
     </div>
     <form:form method="post" action="/spring-todo/todo" modelAttribute="todo" cssStyle="margin-top: 15px;">
@@ -26,5 +26,22 @@
         </div>
         <button type="submit" class="btn btn-primary btn-lg btn-block">Add</button>
     </form:form>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(".todo-item").click(function(){
+                var item = $(this);
+                item.css("text-decoration", "line-through");
+                var id = item.data("id");
+                $.ajax({
+                    url: "/spring-todo/todo/"+id,
+                    type: "delete",
+                    success: function(){
+                        item.fadeOut();
+                    }
+                })
+            });
+        });
+    </script>
 </body>
 </html>

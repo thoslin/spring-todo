@@ -9,7 +9,5 @@ public interface TodoDao {
 
     void deleteTodo(int id);
 
-    Todo getTodoById(int id);
-
     List<Todo> getTodoList();
 }

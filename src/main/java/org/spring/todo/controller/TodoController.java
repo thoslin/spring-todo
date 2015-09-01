@@ -7,13 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 @RequestMapping("/todo")
@@ -46,5 +42,12 @@ public class TodoController {
 //        todo_list.add(another_todo);
 
         return "redirect:todo";
+    }
+
+    @RequestMapping(value="/{todoId}", method = RequestMethod.DELETE)
+    public @ResponseBody String delete(@PathVariable String todoId) {
+        int id = Integer.parseInt(todoId);
+        todoDao.deleteTodo(id);
+        return "Ok";
     }
 }

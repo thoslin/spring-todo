@@ -24,12 +24,8 @@ public class TodoDaoImpl implements TodoDao {
 
     //@Override
     public void deleteTodo(int id) {
-
-    }
-
-    //@Override
-    public Todo getTodoById(int id) {
-        return null;
+        String sql = "DELETE FROM todo WHERE id=?";
+        jdbcTemplate.update(sql, id);
     }
 
     //@Override
