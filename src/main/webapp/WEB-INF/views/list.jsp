@@ -10,9 +10,15 @@
 </head>
 <body>
     <div style="position: absolute; top: 15px; left: 15px;">
-        <c:if test="${pageContext.request.userPrincipal.name != null}">
-            ${pageContext.request.userPrincipal.name} | <a href="<c:url value="/j_spring_security_logout" />" > logout</a>
-        </c:if>
+        <c:choose>
+            <c:when test="${pageContext.request.userPrincipal.name != null}">
+                ${pageContext.request.userPrincipal.name} |
+                <a href="<c:url value="/logout" />"> Sign Out <span class="glyphicon glyphicon-log-out"></span></a>
+            </c:when>
+            <c:when test="${pageContext.request.userPrincipal.name == null}">
+                <a href="<c:url value="/login" />">Sign In <span class="glyphicon glyphicon-log-in"></span></a>
+            </c:when>
+        </c:choose>
     </div>
     <div style="width: 400px; margin: 0 auto">
         <h1 style="text-align: center; margin-bottom: 90px; margin-top: 110px">Spring.Do</h1>
