@@ -16,6 +16,7 @@
                 username-parameter="username"
                 password-parameter="password" />
         <logout logout-success-url="/todo" logout-url="/logout"/>
+        <remember-me key="forget_me_not" token-validity-seconds="86400"/>
         <!-- enable csrf protection -->
         <!--<csrf/>-->
     </http>

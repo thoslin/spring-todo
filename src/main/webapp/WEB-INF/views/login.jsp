@@ -10,6 +10,7 @@
     <form action="<c:url value='/login_processing' />" method="post">
         <input type="text" name="username" />
         <input type="password" name="password" />
+        <input type="checkbox" name="_spring_security_remember_me" /> Remember me
         <p>
             <button type="submit">Submit</button>
         </p>
