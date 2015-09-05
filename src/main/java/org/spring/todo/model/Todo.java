@@ -1,19 +1,20 @@
 package org.spring.todo.model;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.security.core.userdetails.UserDetails;
 
 
 public class Todo {
     private int id;
     @NotEmpty(message="Description may not be empty")
     private String description;
-    private User user;
+    private UserDetails user;
 
-    public User getUser() {
+    public UserDetails getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserDetails user) {
         this.user = user;
     }
 

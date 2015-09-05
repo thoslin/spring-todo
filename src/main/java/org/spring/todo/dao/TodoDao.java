@@ -1,7 +1,7 @@
 package org.spring.todo.dao;
 
 import org.spring.todo.model.Todo;
-import org.spring.todo.model.User;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
 
@@ -12,5 +12,5 @@ public interface TodoDao {
 
     List<Todo> getTodoList();
 
-    List<Todo> getTodoListByUser(User user);
+    List<Todo> getTodoListByUser(UserDetails user);
 }
