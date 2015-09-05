@@ -31,6 +31,7 @@ public class SignupController {
         }
 
         user.setEnabled(true);
+        user.setRole("ROLE_USER");
         userDao.saveUser(user);
         // log user in automatically
         final UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
