@@ -1,6 +1,7 @@
 package org.spring.todo.dao;
 
 import org.spring.todo.model.Todo;
+import org.spring.todo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -18,8 +19,8 @@ public class TodoDaoImpl implements TodoDao {
 
     //@Override
     public int saveTodo(Todo todo) {
-        String sql = "INSERT INTO todo (id, description) VALUES (?, ?)";
-        return jdbcTemplate.update(sql, todo.getId(), todo.getDescription());
+        String sql = "INSERT INTO todo (id, description, username) VALUES (?, ?, ?)";
+        return jdbcTemplate.update(sql, todo.getId(), todo.getDescription(), todo.getUser().getUsername());
     }
 
     //@Override
@@ -39,6 +40,19 @@ public class TodoDaoImpl implements TodoDao {
                 todo.setId(resultSet.getInt("id"));
                 todo.setDescription(resultSet.getString("description"));
 
+                return todo;
+            }
+        });
+    }
+
+    public List<Todo> getTodoListByUser(User user) {
+        String sql = "SELECT * FROM todo WHERE username=?";
+        return jdbcTemplate.query(sql, new Object[]{user.getUsername()}, new RowMapper<Todo>() {
+            public Todo mapRow(ResultSet resultSet, int i) throws SQLException {
+                Todo todo = new Todo();
+
+                todo.setId(resultSet.getInt("id"));
+                todo.setDescription(resultSet.getString("description"));
                 return todo;
             }
         });

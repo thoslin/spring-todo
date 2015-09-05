@@ -6,6 +6,7 @@
 </head>
 <body>
     <h1>Login</h1>
+    <c:out value="${SPRING_SECURITY_LAST_EXCEPTION }" />
     <form action="<c:url value='/login_processing' />" method="post">
         <input type="text" name="username" />
         <input type="password" name="password" />
