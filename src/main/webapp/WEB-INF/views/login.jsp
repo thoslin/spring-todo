@@ -5,11 +5,17 @@
     <title>Login | Spring.Do</title>
 </head>
 <body>
+    <h1>Login</h1>
     <form action="<c:url value='/login_processing' />" method="post">
         <input type="text" name="username" />
         <input type="password" name="password" />
-        <button type="submit">Submit</button>
+        <p>
+            <button type="submit">Submit</button>
+        </p>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
     </form>
+    <p>
+        No account? <a href="<c:url value="/signup" />">Sign Up</a>
+    </p>
 </body>
 </html>
